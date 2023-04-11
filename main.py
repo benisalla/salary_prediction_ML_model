@@ -2,6 +2,10 @@ import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 
+print(pickle)
+print(np.__version__)
+print(Flask.__version__)
+
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
