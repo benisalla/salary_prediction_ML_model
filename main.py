@@ -1,9 +1,11 @@
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template
 import pickle
 
 app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
+modelLR = pickle.load(open('modelLR.pkl', 'rb'))
+modelSVM = pickle.load(open('modelSVM.pkl', 'rb'))
+modelKNN = pickle.load(open('modelKNN.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -11,16 +13,17 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    '''
-    For rendering results on HTML GUI
-    '''
-    int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
+    data = [int(x) for x in request.form.values()]
+    input = [np.array(data)]
+    pred_LR = modelLR.predict(input)
+    pred_SVM = modelSVM.predict(input)
+    pred_KNN = modelKNN.predict(input)
 
-    output = round(prediction[0], 2)
+    output_RL = round(pred_LR[0], 2)
+    output_SVM = round(pred_SVM[0], 2)
+    output_KNN = round(pred_KNN[0], 2)
 
-    return render_template('index.html', prediction_text='Employee Salary should be $ {}'.format(output))
+    return render_template('index.html', KNN='${}'.format(output_KNN),SVM='${}'.format(output_SVM),LR='${}'.format(output_RL))
 
 
 if __name__ == "__main__":
