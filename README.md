@@ -1,5 +1,10 @@
-# salary_prediction_ML_model
 # Salary Prediction Machine Learning Project
+#demo
+
+
+https://user-images.githubusercontent.com/89405673/231897988-be97c4d1-b24f-4d26-9a35-6eb6d4545284.mp4
+
+
 
 This project is aimed at predicting the salary of an employee based on certain features such as experience, test score and interview score. It employs three different machine learning algorithms namely Linear Regression, KNN, and SVM. The implementation of these algorithms was done using Python and Colab notebook was used for scripting. After the development process was completed, the application was then deployed on the Render Platform, a cloud hosting platform. 
 
